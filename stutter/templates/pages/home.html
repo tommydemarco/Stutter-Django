@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Home page{% endblock title %}
+
+{% block content %}
+
+<h1>Hello World</h1>
+
+
+<!-- loading content dynamically from the REST API -->
+<script>
+const xhr = new XMLHttpRequest()
+const method = 'GET' // "POST"
+const url = "/tweets"
+const responseType = "json"
+
+xhr.responseType = responseType
+xhr.open(method, url)
+xhr.onload = function() {
+    const serverResponse = xhr.response
+    var listedItems = serverResponse.response
+    console.log(listedItems)
+}
+xhr.send()
+</script>
+
+{% endblock content %}
