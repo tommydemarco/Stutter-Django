@@ -1,6 +1,9 @@
 #react
 node_modules
 
+#static root
+static-root
+
 # Django #
 *.log
 *.pot

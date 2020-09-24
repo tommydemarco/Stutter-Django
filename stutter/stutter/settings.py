@@ -133,6 +133,7 @@ CORS_URLS_REGEX = r'^/api/.*$'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR.child('static')]
+STATIC_ROOT = BASE_DIR.child('static-root')
 
 LOGIN_URL = '/login'
 
