@@ -27,7 +27,7 @@ SECRET_KEY = get_secret('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','*']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -128,9 +128,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_URLS_REGEX = r'^/api/.*$'
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR.child('static')]
 STATIC_ROOT = BASE_DIR.child('static-root')
@@ -138,12 +135,26 @@ STATIC_ROOT = BASE_DIR.child('static-root')
 LOGIN_URL = '/login'
 
 
+CORS_ORIGIN_ALLOW_ALL = True 
+CORS_URLS_REGEX = r'^/api/.*$'
+
+
 DEFAULT_RENDERER_CLASSES = [
         'rest_framework.renderers.JSONRenderer',
     ]
-if DEBUG: 
-    DEFAULT_RENDERER_CLASSES += ['rest_framework.renderers.BrowsableAPIRenderer']
 
+DEFAULT_AUTHENTICATION_CLASSES = [
+    'rest_framework.authentication.SessionAuthentication'
+]
+if DEBUG:
+    DEFAULT_RENDERER_CLASSES += [
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ]
+    DEFAULT_AUTHENTICATION_CLASSES += [
+        'stutter.rest_api.dev.DevAuthentication'
+    ]
 REST_FRAMEWORK = {
+    
+    'DEFAULT_AUTHENTICATION_CLASSES': DEFAULT_AUTHENTICATION_CLASSES,
     'DEFAULT_RENDERER_CLASSES': DEFAULT_RENDERER_CLASSES
 }

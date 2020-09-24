@@ -11,6 +11,8 @@
     <script src="https://use.fontawesome.com/bc2438d946.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!-- including react css -->
+    {% include 'react/css.html' %}
     <!-- main css -->
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <title>{% block title %}{% endblock title %}</title>
@@ -31,8 +33,13 @@
       </div>
     </div>
   </div>
+  <!-- including the react block -->
+  {% include 'react/base_embed.html' %}
 
   {% include 'components/footer.html' %}
+
+  <!-- react javascript -->
+  {% include 'react/js.html' %}
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

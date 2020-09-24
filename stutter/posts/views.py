@@ -21,7 +21,7 @@ def home_view(request, *args, **kwargs):
 @permission_classes([IsAuthenticated])
 def post_create_view(request, *args, **kwargs):
     '''create post view with django rest'''
-    serializer = PostCreateSerializer(data=request.POST)
+    serializer = PostCreateSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
         serializer.save(user=request.user)
         return Response(serializer.data, status=201)
@@ -31,6 +31,7 @@ def post_create_view(request, *args, **kwargs):
 def post_list_view(request, *args, **kwargs):
     '''list view with django rest'''
     qs = Post.objects.all()
+    #print(request.is_ajax()) it is an ajax request even without xhr.setRequestHeader("HTTP_X_REQUESTED_WITH", "XMLHttpRequest")
     serializer = PostSerializer(qs, many=True)
     return Response(serializer.data)
 
